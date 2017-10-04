@@ -11,8 +11,10 @@
 </form>
 
 <hr />
-{% if tasks|length == 0 %}
+{% if tasks|length == 0 and completed_tasks|length == 0 %}
 <p>No tasks yet</p>
+{% elif tasks|length == 0 and completed_tasks|length > 0 %}
+<p>All caught up!</p>
 {% else %}
 
 <ul>
@@ -28,6 +30,8 @@
 </ul>
 
 {% endif %}
+
+{% if not completed_tasks|length == 0 %}
 <hr />
 <h2>Completed</h2>
 <ul>
@@ -35,4 +39,6 @@
     <li>{{task.name}}</li>
     {% endfor %}
 </ul>
+{% endif %}
+
 {% endblock %}
